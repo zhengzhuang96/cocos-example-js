@@ -41,7 +41,8 @@ cc.Class({
 		// 开启物理系统
 		cc.director.getPhysicsManager().enabled = true;
 
-		this.time = this;
+		this.time = this;	// 倒计时时间
+		this.isCreate = true;	// 是否可以生成西瓜
 	},
 
 	// 屏幕触摸
@@ -94,17 +95,26 @@ cc.Class({
 		})
 		this.positionY = 450;
 		this.block_show.setPosition(cc.v2(pos_touch).x, this.positionY)
+		this.isCreate = true
 	},
 
 	// 创建元素块
 	createBlock: function (pos_touch) {
+		if (!this.isCreate) return
+		this.isCreate = false
+		this.node.off('touchstart')
+		this.node.off('touchmove')
+		this.node.off('touchend')
+		this.node.off('touchcancel')
 		var node_block = cc.instantiate(this.block_arr[this.block_random]) // 从 Prefab 实例化出新节点
 		node_block.parent = this.node // 从资源中添加到node中
 		node_block.setPosition(pos_touch.x, this.positionY)
 		this.time.schedule(function () {
-			cc.log('123123123')
 			this.createHeadFruit()
+			this.isCreate = true
+			this.setTouch()
 		}, 0.5, 0);
+
 	},
 
 

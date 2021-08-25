@@ -8,7 +8,7 @@ cc.Class({
     var _t = this
 
     // 如果是大西瓜就成功
-    if (selfCollider.node.name == "block_10") {
+    if (selfCollider.node.name == "block_11") {
       return
     }
 
