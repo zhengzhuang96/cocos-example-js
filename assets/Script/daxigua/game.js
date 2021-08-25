@@ -117,16 +117,13 @@ cc.Class({
 
 	// 判断是否过线
 	crosslineState(fruitsY) {
-		// console.log(fruitsY, '---', this.line_show.y)
 		if (fruitsY > this.line_show.y) {
-			console.log("过线了")
+			// console.log("过线了")
 			this.gg_show.active = true
 			this.node.off('touchstart')
 			this.node.off('touchmove')
 			this.node.off('touchend')
 			this.node.off('touchcancel')
-		} else {
-			console.log("没有过线")
 		}
 	},
 
